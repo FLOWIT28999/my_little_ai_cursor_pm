@@ -1,0 +1,365 @@
+{
+  "competitors": [
+    {
+      "name": "GitHub Copilot",
+      "website": "github.com/features/copilot",
+      "market_share": 35,
+      "category": "AI Code Assistant",
+      "strengths": [
+        "Native GitHub integration",
+        "Real-time code suggestions",
+        "Large language model training",
+        "Wide IDE support",
+        "Strong brand recognition"
+      ],
+      "weaknesses": [
+        "Limited code review automation",
+        "Generic suggestions lacking context",
+        "High enterprise pricing ($39/user/month)",
+        "Focus on code generation over review quality"
+      ],
+      "features": {
+        "code_generation": true,
+        "code_review": "Limited (PR Agent)",
+        "security_scanning": "Via CodeQL integration",
+        "multi_language": "25+ languages",
+        "ide_integration": "Excellent",
+        "custom_rules": false,
+        "team_analytics": true
+      },
+      "pricing": {
+        "model": "Per-user subscription",
+        "tiers": [
+          {
+            "name": "Individual",
+            "price": 10,
+            "unit": "USD/user/month",
+            "features": ["Code suggestions", "Chat support"]
+          },
+          {
+            "name": "Enterprise",
+            "price": 39,
+            "unit": "USD/user/month", 
+            "features": ["Advanced security", "Audit logs", "Policy management"]
+          }
+        ]
+      },
+      "target_segments": ["Enterprise", "Individual Developers"],
+      "positioning": "AI-first coding assistant with GitHub integration",
+      "customer_satisfaction": {
+        "nps": 45,
+        "g2_score": 4.2,
+        "satisfaction_issues": [
+          "66% report 'almost right but not quite' code",
+          "Limited contextual understanding",
+          "High cost for teams"
+        ]
+      }
+    },
+    {
+      "name": "SonarQube",
+      "website": "sonarqube.org",
+      "market_share": 25,
+      "category": "Static Code Analysis",
+      "strengths": [
+        "Comprehensive static analysis",
+        "Strong security vulnerability detection",
+        "Quality gates for CI/CD",
+        "Enterprise-grade compliance",
+        "Detailed reporting and metrics"
+      ],
+      "weaknesses": [
+        "No AI-powered suggestions",
+        "Complex setup and configuration",
+        "Limited real-time feedback",
+        "Steep learning curve"
+      ],
+      "features": {
+        "code_generation": false,
+        "code_review": "Static analysis only",
+        "security_scanning": "Excellent",
+        "multi_language": "25+ languages",
+        "ide_integration": "Good",
+        "custom_rules": true,
+        "team_analytics": true
+      },
+      "pricing": {
+        "model": "Per lines of code + per user",
+        "tiers": [
+          {
+            "name": "Community",
+            "price": 0,
+            "unit": "Free",
+            "features": ["Basic analysis", "Open source projects"]
+          },
+          {
+            "name": "Developer Edition",
+            "price": 720,
+            "unit": "USD/year per 100K LOC",
+            "features": ["Branch analysis", "PR decoration"]
+          },
+          {
+            "name": "Enterprise",
+            "price": "Custom",
+            "unit": "Contact sales",
+            "features": ["Portfolio management", "Advanced security"]
+          }
+        ]
+      },
+      "target_segments": ["Enterprise", "Mid-Market"],
+      "positioning": "Gold standard for code quality and security analysis",
+      "customer_satisfaction": {
+        "nps": 52,
+        "g2_score": 4.3,
+        "satisfaction_issues": [
+          "Complex configuration",
+          "Limited AI capabilities",
+          "Reactive rather than proactive"
+        ]
+      }
+    },
+    {
+      "name": "CodeClimate",
+      "website": "codeclimate.com",
+      "market_share": 15,
+      "category": "Code Quality Platform",
+      "strengths": [
+        "Focus on maintainability",
+        "Good GitHub/GitLab integration",
+        "Clear technical debt visualization",
+        "User-friendly interface",
+        "Test coverage analysis"
+      ],
+      "weaknesses": [
+        "Limited AI capabilities",
+        "Smaller language support",
+        "Less comprehensive security scanning",
+        "Higher pricing for advanced features"
+      ],
+      "features": {
+        "code_generation": false,
+        "code_review": "Automated quality checks",
+        "security_scanning": "Basic",
+        "multi_language": "10+ languages",
+        "ide_integration": "Limited",
+        "custom_rules": true,
+        "team_analytics": true
+      },
+      "pricing": {
+        "model": "Per user subscription",
+        "tiers": [
+          {
+            "name": "Open Source",
+            "price": 0,
+            "unit": "Free",
+            "features": ["Public repositories only"]
+          },
+          {
+            "name": "Team",
+            "price": 50,
+            "unit": "USD/user/month",
+            "features": ["Private repositories", "Team management"]
+          },
+          {
+            "name": "Enterprise",
+            "price": "Custom",
+            "unit": "Contact sales",
+            "features": ["Advanced analytics", "Custom integrations"]
+          }
+        ]
+      },
+      "target_segments": ["Mid-Market", "Startups"],
+      "positioning": "Developer-friendly code quality platform",
+      "customer_satisfaction": {
+        "nps": 38,
+        "g2_score": 4.0,
+        "satisfaction_issues": [
+          "Limited language support",
+          "Pricing concerns for small teams",
+          "Less comprehensive than SonarQube"
+        ]
+      }
+    },
+    {
+      "name": "CodeRabbit",
+      "website": "coderabbit.ai",
+      "market_share": 8,
+      "category": "AI Code Review",
+      "strengths": [
+        "GPT-4 and Claude model integration",
+        "Contextual line-by-line analysis",
+        "Comprehensive PR summaries",
+        "Catches subtle logic errors",
+        "Modern AI-first approach"
+      ],
+      "weaknesses": [
+        "Newer player with limited track record",
+        "Smaller integration ecosystem",
+        "Higher pricing for advanced features",
+        "Limited enterprise features"
+      ],
+      "features": {
+        "code_generation": "Limited",
+        "code_review": "Advanced AI review",
+        "security_scanning": "Basic",
+        "multi_language": "15+ languages",
+        "ide_integration": "Growing",
+        "custom_rules": true,
+        "team_analytics": "Basic"
+      },
+      "pricing": {
+        "model": "Per user subscription",
+        "tiers": [
+          {
+            "name": "Pro",
+            "price": 15,
+            "unit": "USD/user/month",
+            "features": ["AI code review", "PR summaries"]
+          },
+          {
+            "name": "Enterprise",
+            "price": "Custom",
+            "unit": "Contact sales",
+            "features": ["Advanced security", "Custom models"]
+          }
+        ]
+      },
+      "target_segments": ["Startups", "Mid-Market"],
+      "positioning": "Next-generation AI code review platform",
+      "customer_satisfaction": {
+        "nps": 42,
+        "g2_score": 4.1,
+        "satisfaction_issues": [
+          "Limited enterprise features",
+          "Newer platform with fewer integrations",
+          "Higher learning curve"
+        ]
+      }
+    },
+    {
+      "name": "Codacy",
+      "website": "codacy.com",
+      "market_share": 12,
+      "category": "Automated Code Review",
+      "strengths": [
+        "Strong CI/CD integration",
+        "Multiple language support",
+        "Good security analysis",
+        "Reasonable pricing",
+        "Established platform"
+      ],
+      "weaknesses": [
+        "Limited AI capabilities",
+        "Less intuitive interface",
+        "Slower innovation pace",
+        "Limited customization options"
+      ],
+      "features": {
+        "code_generation": false,
+        "code_review": "Automated analysis",
+        "security_scanning": "Good",
+        "multi_language": "20+ languages",
+        "ide_integration": "Good",
+        "custom_rules": true,
+        "team_analytics": true
+      },
+      "pricing": {
+        "model": "Per user subscription",
+        "tiers": [
+          {
+            "name": "Open Source",
+            "price": 0,
+            "unit": "Free",
+            "features": ["Public repositories"]
+          },
+          {
+            "name": "Pro",
+            "price": 15,
+            "unit": "USD/user/month",
+            "features": ["Private repos", "Advanced analysis"]
+          },
+          {
+            "name": "Business",
+            "price": 35,
+            "unit": "USD/user/month",
+            "features": ["Team management", "Custom rules"]
+          }
+        ]
+      },
+      "target_segments": ["Mid-Market", "Enterprise"],
+      "positioning": "Comprehensive automated code review platform",
+      "customer_satisfaction": {
+        "nps": 35,
+        "g2_score": 3.9,
+        "satisfaction_issues": [
+          "Interface complexity",
+          "Limited AI features",
+          "Slower feature development"
+        ]
+      }
+    }
+  ],
+  "positioning_map": {
+    "x_axis": "AI Capability (Low to High)",
+    "y_axis": "Market Focus (Individual to Enterprise)",
+    "positions": [
+      {
+        "competitor": "GitHub Copilot",
+        "x": 8.5,
+        "y": 7.0,
+        "description": "High AI, Enterprise-focused"
+      },
+      {
+        "competitor": "SonarQube", 
+        "x": 3.0,
+        "y": 9.0,
+        "description": "Low AI, Enterprise-focused"
+      },
+      {
+        "competitor": "CodeClimate",
+        "x": 4.0,
+        "y": 6.0,
+        "description": "Low AI, Mid-market focused"
+      },
+      {
+        "competitor": "CodeRabbit",
+        "x": 9.0,
+        "y": 4.0,
+        "description": "High AI, Startup-focused"
+      },
+      {
+        "competitor": "Codacy",
+        "x": 4.5,
+        "y": 7.5,
+        "description": "Low AI, Enterprise-focused"
+      },
+      {
+        "competitor": "CodeReview AI (Target)",
+        "x": 9.5,
+        "y": 6.5,
+        "description": "Highest AI, Mid-market sweet spot"
+      }
+    ]
+  },
+  "competitive_analysis": {
+    "market_gaps": [
+      "AI-powered code review specifically optimized for Cursor workflow",
+      "Context-aware review that understands project-specific patterns",
+      "Affordable enterprise-grade AI review for mid-market teams",
+      "Real-time review suggestions during development (not just PR)"
+    ],
+    "differentiation_opportunities": [
+      "Cursor-native integration with deep IDE understanding",
+      "Project-specific AI model training",
+      "Real-time contextual review suggestions",
+      "Mid-market pricing with enterprise features"
+    ],
+    "threat_level": {
+      "GitHub Copilot": "High - Strong brand and integration",
+      "SonarQube": "Medium - Established but limited AI",
+      "CodeClimate": "Low - Limited AI capabilities",
+      "CodeRabbit": "Medium - Similar AI focus but limited integration",
+      "Codacy": "Low - Slower innovation"
+    }
+  }
+}

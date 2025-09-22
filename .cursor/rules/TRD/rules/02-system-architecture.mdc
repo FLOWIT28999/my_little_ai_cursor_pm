@@ -1,0 +1,177 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# System Architecture Design Rules
+
+## Purpose
+확정된 기술 스택을 기반으로 상세한 시스템 아키텍처를 설계하고 문서화합니다.
+
+## Prerequisites
+- 기술 스택 확정 완료 (01-tech-stack-selection.md)
+- PRD 분석 결과 참조
+- 비기능 요구사항 이해
+
+## Architecture Design Process
+
+### 1. Architecture Pattern Selection
+```markdown
+## 아키텍처 패턴 결정
+
+### 고려할 패턴
+- [ ] Monolithic Architecture
+- [ ] Microservices Architecture
+- [ ] Serverless Architecture
+- [ ] Event-Driven Architecture
+- [ ] Layered Architecture
+- [ ] Hexagonal Architecture
+
+### 선택 기준
+1. **시스템 복잡도**: [단순/중간/복잡]
+2. **팀 규모**: [소규모/중규모/대규모]
+3. **확장성 요구**: [낮음/중간/높음]
+4. **배포 빈도**: [월간/주간/일간]
+```
+
+### 2. Component Definition
+```markdown
+## 시스템 구성 요소 정의
+
+### Frontend Components
+| 컴포넌트 | 책임 | 기술 | 인터페이스 |
+|----------|------|------|------------|
+| [Web App] | [사용자 인터페이스] | [React] | [REST API] |
+| [Mobile App] | [모바일 인터페이스] | [React Native] | [REST API] |
+
+### Backend Services
+| 서비스 | 책임 | 기술 | 통신 방식 |
+|--------|------|------|----------|
+| [API Gateway] | [요청 라우팅] | [Kong] | [HTTP/HTTPS] |
+| [Auth Service] | [인증/인가] | [Node.js] | [REST/JWT] |
+| [Business Service] | [비즈니스 로직] | [Spring Boot] | [REST/gRPC] |
+
+### Data Layer
+| 컴포넌트 | 용도 | 기술 | 데이터 유형 |
+|----------|------|------|------------|
+| [Primary DB] | [트랜잭션 데이터] | [PostgreSQL] | [관계형] |
+| [Cache] | [세션/임시 데이터] | [Redis] | [Key-Value] |
+| [Object Storage] | [파일/미디어] | [S3] | [Binary] |
+```
+
+### 3. Communication Patterns
+```markdown
+## 컴포넌트 간 통신 패턴
+
+### 동기 통신
+- API Gateway ↔ Services: REST/HTTP
+- Services ↔ Database: SQL/JDBC
+
+### 비동기 통신
+- Event Bus: [Kafka/RabbitMQ]
+- Message Queue: [SQS/Redis Queue]
+
+### 통신 보안
+- TLS/SSL: 모든 외부 통신
+- mTLS: 서비스 간 통신
+- API Key/JWT: 인증
+```
+
+## Architecture Diagram Generation
+
+### Mermaid Diagram Code
+```mermaid
+graph TB
+    subgraph "Client Layer"
+        A[Web Browser]
+        B[Mobile App]
+    end
+    
+    subgraph "API Layer"
+        C[API Gateway/Load Balancer]
+        D[Authentication Service]
+    end
+    
+    subgraph "Application Layer"
+        E[Service 1]
+        F[Service 2]
+        G[Service 3]
+    end
+    
+    subgraph "Data Layer"
+        H[(PostgreSQL)]
+        I[(Redis Cache)]
+        J[S3 Storage]
+    end
+    
+    A --> C
+    B --> C
+    C --> D
+    C --> E
+    C --> F
+    C --> G
+    E --> H
+    E --> I
+    F --> H
+    F --> I
+    G --> J
+    D --> I
+```
+
+## Output Format
+
+```markdown
+## 시스템 아키텍처 설계
+
+### 1. 아키텍처 개요
+- **패턴**: [선택된 아키텍처 패턴]
+- **주요 특징**: [핵심 특징들]
+- **설계 원칙**: [적용된 원칙들]
+
+### 2. 시스템 구성 요소
+
+#### 2.1 프레젠테이션 계층
+[컴포넌트 상세 설명]
+
+#### 2.2 비즈니스 로직 계층
+[서비스 상세 설명]
+
+#### 2.3 데이터 액세스 계층
+[데이터베이스 및 저장소 설명]
+
+### 3. 인터페이스 정의
+[컴포넌트 간 인터페이스 명세]
+
+### 4. 데이터 흐름
+[주요 use case별 데이터 흐름 설명]
+
+### 5. 보안 아키텍처
+- 인증/인가 메커니즘
+- 데이터 암호화 전략
+- 네트워크 보안
+
+### 6. 확장성 전략
+- 수평/수직 확장 계획
+- 로드 밸런싱 전략
+- 캐싱 전략
+
+### 7. 아키텍처 다이어그램
+[Mermaid 다이어그램 코드]
+```
+
+## Design Considerations
+
+### Performance
+- Response time requirements
+- Throughput requirements
+- Resource utilization targets
+
+### Reliability
+- Fault tolerance mechanisms
+- Disaster recovery plan
+- High availability setup
+
+### Security
+- Defense in depth strategy
+- Zero trust principles
+- Compliance requirements

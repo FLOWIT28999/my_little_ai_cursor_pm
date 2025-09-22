@@ -1,0 +1,235 @@
+{
+  "solutions": [
+    {
+      "id": "S001",
+      "name": "Real-time AI Code Review",
+      "description": "Cursor 통합 실시간 AI 코드 리뷰 시스템으로 개발 중 즉시 피드백 제공",
+      "solves_problems": ["P001", "P002", "P003"],
+      "features": [
+        "실시간 코드 분석 및 제안",
+        "Cursor IDE 네이티브 통합",
+        "맥락 인식 AI 피드백",
+        "프로젝트별 패턴 학습"
+      ],
+      "rice_score": {
+        "reach": 85,
+        "impact": 9,
+        "confidence": 80,
+        "effort": 8,
+        "total": 76.5
+      },
+      "priority": 1,
+      "phase": "MVP",
+      "dependencies": ["AI Model Training", "Cursor API Integration"]
+    },
+    {
+      "id": "S002", 
+      "name": "Smart Code Quality Standards",
+      "description": "AI 기반 자동 코드 품질 표준 적용 및 일관성 보장 시스템",
+      "solves_problems": ["P002", "P004"],
+      "features": [
+        "자동 코딩 스타일 적용",
+        "팀별 커스텀 규칙 학습",
+        "일관성 메트릭 대시보드",
+        "점진적 품질 개선 가이드"
+      ],
+      "rice_score": {
+        "reach": 70,
+        "impact": 8,
+        "confidence": 85,
+        "effort": 6,
+        "total": 78.7
+      },
+      "priority": 2,
+      "phase": "MVP",
+      "dependencies": ["Code Analysis Engine", "Team Analytics"]
+    },
+    {
+      "id": "S003",
+      "name": "Contextual Security Scanner",
+      "description": "프로젝트 맥락을 이해하는 지능형 보안 취약점 탐지 시스템",
+      "solves_problems": ["P001", "P005"],
+      "features": [
+        "맥락 기반 보안 분석",
+        "실시간 취약점 탐지",
+        "수정 제안 및 가이드",
+        "컴플라이언스 체크"
+      ],
+      "rice_score": {
+        "reach": 60,
+        "impact": 9,
+        "confidence": 75,
+        "effort": 9,
+        "total": 45.0
+      },
+      "priority": 3,
+      "phase": "Phase 2",
+      "dependencies": ["Security Knowledge Base", "Compliance Framework"]
+    },
+    {
+      "id": "S004",
+      "name": "Intelligent PR Automation",
+      "description": "AI 기반 자동 PR 생성, 리뷰, 머지 시스템",
+      "solves_problems": ["P001", "P004"],
+      "features": [
+        "자동 PR 생성 및 설명",
+        "지능형 리뷰어 할당",
+        "자동 코드 수정 제안",
+        "조건부 자동 머지"
+      ],
+      "rice_score": {
+        "reach": 80,
+        "impact": 8,
+        "confidence": 70,
+        "effort": 7,
+        "total": 64.0
+      },
+      "priority": 4,
+      "phase": "Phase 2",
+      "dependencies": ["Git Integration", "Team Management System"]
+    },
+    {
+      "id": "S005",
+      "name": "Technical Debt Visualizer",
+      "description": "AI 기반 기술 부채 자동 탐지 및 우선순위 관리 시스템",
+      "solves_problems": ["P005"],
+      "features": [
+        "자동 기술 부채 탐지",
+        "우선순위 기반 정리 가이드",
+        "리팩토링 제안",
+        "부채 트렌드 분석"
+      ],
+      "rice_score": {
+        "reach": 95,
+        "impact": 9,
+        "confidence": 65,
+        "effort": 8,
+        "total": 69.7
+      },
+      "priority": 5,
+      "phase": "Phase 3",
+      "dependencies": ["Code Analysis Engine", "Historical Data Analysis"]
+    },
+    {
+      "id": "S006",
+      "name": "Team Learning Assistant",
+      "description": "개발팀의 코딩 패턴과 베스트 프랙티스를 학습하여 맞춤형 가이드 제공",
+      "solves_problems": ["P002", "P004"],
+      "features": [
+        "팀 코딩 스타일 학습",
+        "개인별 맞춤 교육",
+        "베스트 프랙티스 추천",
+        "스킬 갭 분석"
+      ],
+      "rice_score": {
+        "reach": 70,
+        "impact": 7,
+        "confidence": 80,
+        "effort": 6,
+        "total": 65.3
+      },
+      "priority": 6,
+      "phase": "Phase 3",
+      "dependencies": ["Machine Learning Pipeline", "User Analytics"]
+    }
+  ],
+  "roadmap": {
+    "phases": [
+      {
+        "name": "MVP (0-6 months)",
+        "timeline": "2025 Q2 - Q3",
+        "solutions": ["S001", "S002"],
+        "goals": [
+          "Cursor 네이티브 통합 완성",
+          "실시간 코드 리뷰 기본 기능",
+          "10개 파일럿 팀 확보"
+        ],
+        "success_metrics": [
+          "리뷰 시간 50% 단축",
+          "코드 품질 일관성 30% 향상",
+          "개발자 만족도 NPS 50+"
+        ]
+      },
+      {
+        "name": "Phase 2 (6-12 months)",
+        "timeline": "2025 Q4 - 2026 Q1",
+        "solutions": ["S003", "S004"],
+        "goals": [
+          "보안 기능 통합",
+          "PR 자동화 완성",
+          "100개 팀 확보"
+        ],
+        "success_metrics": [
+          "보안 취약점 탐지율 90%+",
+          "PR 처리 시간 70% 단축",
+          "월 활성 사용자 1,000명"
+        ]
+      },
+      {
+        "name": "Phase 3 (12-18 months)",
+        "timeline": "2026 Q2 - Q3",
+        "solutions": ["S005", "S006"],
+        "goals": [
+          "기술 부채 관리 자동화",
+          "팀 학습 기능 완성",
+          "1,000개 팀 확보"
+        ],
+        "success_metrics": [
+          "기술 부채 감소율 40%+",
+          "개발자 온보딩 시간 50% 단축",
+          "연간 반복 수익 $5M"
+        ]
+      }
+    ]
+  },
+  "technical_architecture": {
+    "core_components": [
+      {
+        "name": "AI Analysis Engine",
+        "description": "코드 분석 및 제안을 위한 핵심 AI 엔진",
+        "technologies": ["GPT-4", "Claude", "Custom Fine-tuned Models"],
+        "scalability": "Auto-scaling on cloud infrastructure"
+      },
+      {
+        "name": "Cursor Integration Layer",
+        "description": "Cursor IDE와의 네이티브 통합을 위한 API 레이어",
+        "technologies": ["Cursor API", "LSP Protocol", "WebSocket"],
+        "scalability": "Real-time bidirectional communication"
+      },
+      {
+        "name": "Code Knowledge Graph",
+        "description": "프로젝트별 코드 패턴과 관계를 저장하는 지식 그래프",
+        "technologies": ["Neo4j", "Vector Database", "Graph ML"],
+        "scalability": "Distributed graph processing"
+      },
+      {
+        "name": "Security Analysis Module",
+        "description": "보안 취약점 탐지 및 컴플라이언스 체크",
+        "technologies": ["SAST", "DAST", "SCA", "Custom Rules"],
+        "scalability": "Parallel security scanning"
+      }
+    ],
+    "integration_points": [
+      "Cursor IDE (Primary)",
+      "GitHub/GitLab (Secondary)",
+      "Slack/Teams (Notifications)",
+      "Jira (Issue Tracking)",
+      "CI/CD Pipelines"
+    ]
+  },
+  "value_proposition": {
+    "primary": "Cursor 개발자를 위한 가장 지능적이고 맥락을 이해하는 AI 코드 리뷰 시스템",
+    "secondary": [
+      "개발 중 실시간 피드백으로 PR 대기 시간 제거",
+      "프로젝트별 패턴 학습으로 맞춤형 코드 품질 향상",
+      "시니어 개발자 부담 감소와 주니어 개발자 성장 지원",
+      "엔터프라이즈급 보안과 컴플라이언스를 합리적 가격에"
+    ],
+    "differentiation": [
+      "Cursor 네이티브 통합 (독점적)",
+      "실시간 맥락 인식 AI (업계 최초)",
+      "프로젝트별 AI 모델 학습 (차별화)",
+      "Mid-Market 최적화 가격 정책 (경쟁 우위)"
+    ]
+  }
+}

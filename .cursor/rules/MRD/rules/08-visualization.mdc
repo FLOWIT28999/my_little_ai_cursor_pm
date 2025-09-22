@@ -1,0 +1,441 @@
+---
+alwaysApply: false
+---
+# Visualization Rules
+
+## Objective
+수집된 데이터를 효과적으로 시각화하여 인사이트를 제공하고 의사결정을 지원
+
+## Required Inputs
+- 모든 단계에서 수집된 JSON 데이터 파일
+- 사용자의 시각화 선호도 (Notion/HTML/Both)
+- 타겟 독자 정의 (기술팀/경영진/투자자)
+
+## Data Processing Pipeline
+
+### 1. Data Collection & Validation
+```javascript
+// Check all required data files
+const requiredFiles = [
+  'market-data.json',
+  'personas.json',
+  'problems.json',
+  'competitors.json',
+  'solutions.json',
+  'metrics.json'
+];
+
+// Validate data structure
+function validateData(data) {
+  // Check for required fields
+  // Verify data types
+  // Handle missing values
+}
+```
+
+### 2. Data Aggregation
+```javascript
+// Merge all data into master-data.json
+const masterData = {
+  timestamp: new Date().toISOString(),
+  version: "1.0",
+  project: {},
+  market: {},
+  customers: {},
+  problems: {},
+  competitors: {},
+  solutions: {},
+  metrics: {}
+};
+```
+
+## Visualization Components by Section
+
+### Market Analysis Visualizations
+
+#### 1. TAM/SAM/SOM Visualization
+**Notion Format (Mermaid)**
+```mermaid
+graph TD
+    TAM["TAM<br/>$100B<br/>Total Market"] 
+    SAM["SAM<br/>$30B<br/>Serviceable Market"]
+    SOM["SOM<br/>$3B<br/>Obtainable Market"]
+    TAM --> SAM
+    SAM --> SOM
+    style TAM fill:#e1f5fe
+    style SAM fill:#81d4fa
+    style SOM fill:#0288d1
+```
+
+**HTML Format (Chart.js)**
+```javascript
+const tamChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['TAM', 'SAM', 'SOM'],
+    datasets: [{
+      data: [tam, sam, som],
+      backgroundColor: ['#e1f5fe', '#81d4fa', '#0288d1']
+    }]
+  }
+});
+```
+
+#### 2. Market Growth Projection
+**Notion Format (Table)**
+| Year | Market Size | Growth Rate | Our Share |
+|------|------------|-------------|-----------|
+| 2024 | $XB | - | X% |
+| 2025 | $XB | X% | X% |
+| 2026 | $XB | X% | X% |
+| 2027 | $XB | X% | X% |
+| 2028 | $XB | X% | X% |
+
+**HTML Format (Line Chart)**
+```javascript
+const growthChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: years,
+    datasets: [{
+      label: 'Market Size',
+      data: marketSizes,
+      borderColor: '#0288d1'
+    }, {
+      label: 'Our Revenue',
+      data: ourRevenue,
+      borderColor: '#00c853'
+    }]
+  }
+});
+```
+
+### Customer Segmentation Visualizations
+
+#### 1. Persona Comparison Matrix
+**Notion Format**
+| Attribute | Enterprise Emma | Startup Steve | SMB Sarah |
+|-----------|----------------|---------------|-----------|
+| Company Size | 1000+ | <50 | 50-500 |
+| Budget | $100K+ | $10K | $30K |
+| Decision Time | 6-12 months | 1 month | 3 months |
+| Key Challenge | Scale | Speed | Cost |
+| Priority | High | Medium | High |
+
+#### 2. Segment Opportunity Map
+**Mermaid Format**
+```mermaid
+quadrantChart
+    title Customer Segment Opportunity
+    x-axis Low Growth → High Growth
+    y-axis Low Size → High Size
+    quadrant-1 Consider
+    quadrant-2 Prioritize
+    quadrant-3 Deprioritize  
+    quadrant-4 Maintain
+    Enterprise: [0.3, 0.9]
+    SMB: [0.7, 0.5]
+    Startup: [0.9, 0.2]
+```
+
+### Problem Analysis Visualizations
+
+#### 1. Problem Priority Matrix
+**HTML Format**
+```javascript
+const problemMatrix = new Chart(ctx, {
+  type: 'bubble',
+  data: {
+    datasets: [{
+      label: 'Problems',
+      data: problems.map(p => ({
+        x: p.frequency,
+        y: p.severity,
+        r: p.affectedUsers * 10
+      }))
+    }]
+  }
+});
+```
+
+#### 2. Impact Heatmap
+**Notion Format**
+| Problem | Time Impact | Cost Impact | Productivity | Overall |
+|---------|------------|-------------|--------------|---------|
+| Problem 1 | 🔴 High | 🔴 High | 🟡 Medium | 🔴 Critical |
+| Problem 2 | 🟡 Medium | 🔴 High | 🔴 High | 🔴 Critical |
+| Problem 3 | 🟢 Low | 🟡 Medium | 🟡 Medium | 🟡 Moderate |
+
+### Competitive Analysis Visualizations
+
+#### 1. Feature Comparison Matrix
+**Notion Format**
+| Feature Category | Feature | Us | Competitor A | Competitor B | Competitor C |
+|-----------------|---------|-----|--------------|--------------|--------------|
+| Core | Feature 1 | ✅ | ✅ | ✅ | ❌ |
+| Core | Feature 2 | ✅ | ❌ | ✅ | ✅ |
+| Advanced | Feature 3 | ✅ | ✅ | ❌ | ❌ |
+| Unique | Feature 4 | ✅ | ❌ | ❌ | ❌ |
+
+#### 2. Competitive Positioning Map
+**HTML Format**
+```javascript
+const positioningMap = new Chart(ctx, {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Competitors',
+      data: competitors.map(c => ({
+        x: c.price,
+        y: c.features,
+        label: c.name
+      }))
+    }]
+  }
+});
+```
+
+### Solution Roadmap Visualizations
+
+#### 1. Development Timeline
+**Mermaid Format**
+```mermaid
+gantt
+    title Product Development Roadmap
+    dateFormat YYYY-MM-DD
+    section MVP
+    Core Feature 1    :a1, 2024-01-01, 30d
+    Core Feature 2    :a2, after a1, 30d
+    Testing & Launch  :a3, after a2, 14d
+    section Phase 2
+    Feature 3         :b1, after a3, 45d
+    Feature 4         :b2, after a3, 60d
+    section Phase 3
+    Advanced Features :c1, after b2, 90d
+```
+
+#### 2. RICE Priority Chart
+**HTML Format**
+```javascript
+const riceChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: features.map(f => f.name),
+    datasets: [{
+      label: 'RICE Score',
+      data: features.map(f => f.riceScore),
+      backgroundColor: features.map(f => 
+        f.priority === 1 ? '#00c853' : 
+        f.priority === 2 ? '#ffc107' : '#f44336'
+      )
+    }]
+  }
+});
+```
+
+### Financial Metrics Visualizations
+
+#### 1. Revenue Projection
+**HTML Format**
+```javascript
+const revenueChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Y1', 'Y2', 'Y3', 'Y4', 'Y5'],
+    datasets: [{
+      label: 'Conservative',
+      data: conservativeProjection,
+      borderColor: '#ff9800'
+    }, {
+      label: 'Realistic',
+      data: realisticProjection,
+      borderColor: '#2196f3'
+    }, {
+      label: 'Optimistic',
+      data: optimisticProjection,
+      borderColor: '#4caf50'
+    }]
+  }
+});
+```
+
+#### 2. Unit Economics Dashboard
+**Notion Format**
+```markdown
+## Unit Economics
+
+### Key Metrics
+| Metric | Value | Target | Status |
+|--------|-------|--------|--------|
+| CAC | $500 | <$600 | ✅ Good |
+| LTV | $2,000 | >$1,800 | ✅ Good |
+| LTV/CAC | 4:1 | >3:1 | ✅ Excellent |
+| Payback | 6 months | <12 months | ✅ Good |
+
+### Monthly Burn vs Revenue
+[Chart showing monthly burn rate vs revenue growth]
+```
+
+## Dashboard Assembly
+
+### Executive Dashboard Structure
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MRD Executive Dashboard</title>
+    <style>
+        .dashboard {
+            display: grid;
+            grid-template-areas:
+                "summary summary"
+                "market customer"
+                "problems competitors"
+                "solutions metrics";
+            gap: 20px;
+        }
+        .summary { grid-area: summary; }
+        .market { grid-area: market; }
+        .customer { grid-area: customer; }
+        /* ... other areas ... */
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="summary">
+            <h2>Executive Summary</h2>
+            <!-- Key metrics cards -->
+        </div>
+        <div class="market">
+            <h3>Market Opportunity</h3>
+            <canvas id="marketChart"></canvas>
+        </div>
+        <!-- ... other sections ... -->
+    </div>
+</body>
+</html>
+```
+
+### Notion Dashboard Template
+```markdown
+# MRD Executive Dashboard
+
+## At a Glance
+> **TAM**: $100B | **Target Launch**: Q4 2024 | **Priority Segments**: 3
+
+## Market Opportunity
+[TAM/SAM/SOM visualization]
+[Growth projection chart]
+
+## Customer Insights  
+[Persona comparison matrix]
+[Segment priority map]
+
+## Problem Landscape
+[Priority matrix]
+[Impact heatmap]
+
+## Competitive Position
+[Feature comparison]
+[Positioning map]
+
+## Solution Roadmap
+[Development timeline]
+[RICE priorities]
+
+## Financial Projections
+[Revenue chart]
+[Unit economics]
+
+## Next Steps
+1. [Action item 1]
+2. [Action item 2]
+3. [Action item 3]
+```
+
+## Data Export Functions
+
+### JSON to CSV Export
+```javascript
+function exportToCSV(data, filename) {
+  const csv = convertToCSV(data);
+  downloadFile(csv, filename + '.csv', 'text/csv');
+}
+```
+
+### Generate PDF Report
+```javascript
+function generatePDFReport(data) {
+  // Use jsPDF or similar library
+  const doc = new jsPDF();
+  // Add charts and tables
+  doc.save('MRD-Report.pdf');
+}
+```
+
+## Validation Checklist
+- [ ] All data files are present and valid
+- [ ] Visualizations accurately represent data
+- [ ] Charts are responsive and interactive
+- [ ] Notion format is compatible
+- [ ] HTML dashboard loads correctly
+- [ ] Data can be exported successfully
+- [ ] Version control is maintained
+
+## Best Practices
+
+### Visual Design
+- Use consistent color palette
+- Ensure accessibility (color blind friendly)
+- Include data labels and tooltips
+- Provide context and benchmarks
+- Keep visualizations simple and clear
+
+### Data Integrity
+- Validate all calculations
+- Handle missing or null values
+- Maintain data versioning
+- Document data sources
+- Enable data refresh/update
+
+### User Experience
+- Provide filtering options
+- Enable drill-down capabilities
+- Include export functionality
+- Optimize loading performance
+- Ensure mobile responsiveness
+
+## Error Handling
+```javascript
+try {
+  // Load and validate data
+  const data = await loadDataFiles();
+  validateDataStructure(data);
+  
+  // Generate visualizations
+  renderCharts(data);
+  
+} catch (error) {
+  console.error('Visualization error:', error);
+  showErrorMessage(error.message);
+  // Fallback to basic tables
+  renderBasicTables(data);
+}
+```
+
+## Update Mechanism
+```javascript
+// Support incremental updates
+function updateVisualization(section, newData) {
+  // Load existing master data
+  const masterData = loadMasterData();
+  
+  // Update specific section
+  masterData[section] = newData;
+  masterData.lastUpdated = new Date().toISOString();
+  
+  // Save and regenerate
+  saveMasterData(masterData);
+  regenerateVisualizations(section);
+}
+```

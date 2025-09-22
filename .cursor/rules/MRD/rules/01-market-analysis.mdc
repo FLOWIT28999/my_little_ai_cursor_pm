@@ -1,0 +1,103 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+# Market Analysis Rules
+
+## Objective
+시장 기회를 정확히 포착하고 TAM(Total Addressable Market)을 정량적으로 분석
+
+## Required Inputs
+- target_market: 분석할 시장 또는 산업
+- geographic_scope: 지리적 범위 (글로벌/지역)
+- time_horizon: 분석 기간 (현재-미래 X년)
+
+## Process Steps
+
+### 1. Market Landscape Analysis
+Use Perplexity MCP to research:
+- Query: "[target_market] market size 2024 2025 forecast"
+- Query: "[target_market] industry trends growth drivers"
+- Query: "[target_market] market segmentation analysis"
+- Query: "emerging technologies in [target_market]"
+- Query: "[target_market] regulatory changes impact"
+
+### 2. TAM Calculation
+Calculate using multiple methods:
+- Top-down: Industry reports total market size
+- Bottom-up: Number of potential customers × average revenue per customer
+- Value theory: Value provided × number of customers
+
+### 3. Trend Analysis
+Identify and validate:
+- Growth rate patterns (CAGR)
+- Emerging sub-markets
+- Disruptive technologies
+- Regulatory changes impact
+- Economic factors influence
+
+## Output Structure
+
+# 시장 기회 및 TAM 분석
+
+## 시장 환경 개요
+- 현재 시장 규모: $X billion
+- 예상 성장률: X% CAGR (2024-2029)
+- 주요 성장 동인:
+  1. [동인 1]
+  2. [동인 2]
+  3. [동인 3]
+
+## TAM 분석
+
+### 계산 방법론
+| 방법론 | 2024 | 2025 | 2026 | 2027 | 2028 |
+|--------|------|------|------|------|------|
+| Top-down | $XB | $XB | $XB | $XB | $XB |
+| Bottom-up | $XB | $XB | $XB | $XB | $XB |
+| Value-based | $XB | $XB | $XB | $XB | $XB |
+
+### SAM & SOM 예측
+- SAM (Serviceable Addressable Market): $X billion
+- SOM (Serviceable Obtainable Market): $X billion
+- 목표 시장 점유율: X% by 2028
+
+## 핵심 트렌드
+
+### 트렌드 1: [트렌드명]
+- 설명: [상세 설명]
+- 시장 영향: [영향도 분석]
+- 기회: [비즈니스 기회]
+
+### 트렌드 2: [트렌드명]
+- 설명: [상세 설명]
+- 시장 영향: [영향도 분석]
+- 기회: [비즈니스 기회]
+
+## 시장 세분화
+| 세그먼트 | 규모 (2024) | 성장률 | 특징 |
+|----------|-------------|--------|------|
+| 세그먼트 A | $XB | X% | [특징] |
+| 세그먼트 B | $XB | X% | [특징] |
+| 세그먼트 C | $XB | X% | [특징] |
+
+## 기회 요약
+- **최대 기회**: [설명]
+- **진입 전략**: [권장 접근법]
+- **타이밍**: [최적 시기]
+- **예상 위험**: 
+  1. [위험 1]
+  2. [위험 2]
+
+## 데이터 출처
+- [출처 1]
+- [출처 2]
+- [출처 3]
+
+## Validation Checklist
+- [ ] 최소 3개 이상의 신뢰할 수 있는 출처 확보
+- [ ] 숫자의 일관성 검증
+- [ ] 경쟁사 공개 자료와 교차 검증
+- [ ] 전문가 의견 또는 업계 리포트 참조

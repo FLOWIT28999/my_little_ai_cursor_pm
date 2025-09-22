@@ -1,0 +1,38 @@
+---
+alwaysApply: false
+---
+# General MRD Creation Rules
+
+## Purpose
+이 프로젝트는 AI를 활용하여 체계적이고 데이터 기반의 MRD(Market Requirements Document)를 작성하는 것을 목표로 합니다.
+
+## Output Format
+- 모든 출력은 Notion 호환 Markdown 형식으로 작성
+- 테이블은 Markdown 테이블 문법 사용
+- 코드 블록은 ```language``` 형식 사용
+- 토글 리스트는 > 블록 인용 사용
+
+## Version Control
+- 각 섹션 생성 시 mrd-output/drafts/ 폴더에 임시 저장
+- 완성된 섹션은 타임스탬프와 함께 mrd-output/versions/ 폴더에 저장
+- 파일명 형식: YYYYMMDD-HHMMSS-section-name.md
+
+## Data Source Priority
+1. Perplexity MCP를 통한 최신 시장 데이터
+2. Playwright MCP를 통한 경쟁사 웹사이트 정보
+3. 사용자가 제공한 내부 데이터
+
+## Quality Standards
+- 모든 주장은 데이터로 뒷받침
+- 출처 명시 필수
+- 정량적 지표 우선
+- 시각적 요소(테이블, 차트) 적극 활용
+
+## MRD Section Structure
+1. 시장 기회 및 TAM 분석
+2. 고객 세분화 및 페르소나
+3. 문제 정의 및 우선순위
+4. 경쟁사 분석
+5. 솔루션 및 기능 정의
+6. 메트릭 및 비즈니스 케이스
+7. 종합 및 실행 계획

@@ -1,0 +1,93 @@
+{
+  "market_analysis": {
+    "market_name": "AI Code Review & Software Development Tools",
+    "current_size": {
+      "value": 12.26,
+      "unit": "billion USD",
+      "year": 2024
+    },
+    "projected_size": {
+      "value": 27.17,
+      "unit": "billion USD",
+      "year": 2032
+    },
+    "cagr": 23.8,
+    "tam": {
+      "value": 50.0,
+      "methodology": "top-down",
+      "description": "Total Software Development Tools Market"
+    },
+    "sam": {
+      "value": 12.26,
+      "percentage_of_tam": 24.5,
+      "description": "AI Code Tools Market targeting development teams"
+    },
+    "som": {
+      "value": 2.45,
+      "percentage_of_sam": 20.0,
+      "description": "Serviceable Obtainable Market for CodeReview AI (mid-market focus)"
+    },
+    "segments": [
+      {
+        "name": "Enterprise (1000+ employees)",
+        "size": 7.36,
+        "percentage": 60,
+        "growth_rate": 20.5,
+        "characteristics": "Large budgets, complex requirements, long sales cycles"
+      },
+      {
+        "name": "Mid-Market (50-500 employees)",
+        "size": 3.68,
+        "percentage": 30,
+        "growth_rate": 28.2,
+        "characteristics": "Balanced budget/feature needs, faster adoption, growth-focused"
+      },
+      {
+        "name": "SMB (10-50 employees)",
+        "size": 1.22,
+        "percentage": 10,
+        "growth_rate": 25.1,
+        "characteristics": "Price-sensitive, simple solutions, quick decisions"
+      }
+    ],
+    "trends": [
+      {
+        "name": "AI/ML Integration in Development Tools",
+        "impact": "High",
+        "description": "Automation of code analysis, bug detection, and test generation becoming standard",
+        "market_impact": "40-70% reduction in manual review time"
+      },
+      {
+        "name": "DevOps and CI/CD Adoption",
+        "impact": "High",
+        "description": "Continuous integration demands automated, real-time code review",
+        "market_impact": "8.24% CAGR growth in code review automation"
+      },
+      {
+        "name": "Security-First Development",
+        "impact": "Medium",
+        "description": "Increasing cybersecurity threats drive demand for secure coding practices",
+        "market_impact": "Vulnerability detection integration becomes mandatory"
+      },
+      {
+        "name": "Cloud-Native Development",
+        "impact": "High",
+        "description": "Cloud deployment dominates with 65% market share",
+        "market_impact": "Scalability and rapid deployment favored by mid-sized teams"
+      }
+    ],
+    "growth_drivers": [
+      "Increasing demand for faster software delivery",
+      "Rising cybersecurity concerns",
+      "Developer productivity focus (55% velocity increase with AI tools)",
+      "Remote work driving need for automated review processes",
+      "Cost pressure to reduce manual QA efforts"
+    ],
+    "geographic_distribution": {
+      "north_america": 45,
+      "europe": 30,
+      "asia_pacific": 20,
+      "others": 5
+    }
+  }
+}

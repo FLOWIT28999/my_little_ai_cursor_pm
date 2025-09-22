@@ -1,0 +1,188 @@
+{
+  "problems": [
+    {
+      "id": "P001",
+      "description": "코드 리뷰 병목으로 인한 개발 속도 저하",
+      "severity": 9,
+      "frequency": "매일",
+      "affected_personas": ["Alex Chen", "Sarah Kim", "David Rodriguez"],
+      "affected_percentage": 85,
+      "current_solutions": [
+        "수동 코드 리뷰 프로세스",
+        "시니어 개발자 의존적 리뷰",
+        "GitHub/GitLab PR 시스템"
+      ],
+      "satisfaction_score": 4,
+      "impact": {
+        "time_waste": "개발자 시간의 23% 소모",
+        "cost": 150000,
+        "cost_unit": "USD per year per team",
+        "productivity_loss": 35,
+        "productivity_loss_unit": "percentage"
+      },
+      "priority_score": 95,
+      "root_causes": [
+        "수동 리뷰 프로세스의 비효율성",
+        "리뷰어 가용성에 따른 대기 시간",
+        "복잡한 코드 변경 사항의 리뷰 어려움",
+        "분산된 팀 환경에서의 동기화 문제"
+      ],
+      "quantified_impact": {
+        "avg_pr_review_time": "2-3 days",
+        "developer_hours_saved_potential": 450000,
+        "feature_delivery_delay": "30-40%"
+      }
+    },
+    {
+      "id": "P002", 
+      "description": "코드 품질 표준의 일관성 부족",
+      "severity": 8,
+      "frequency": "주간",
+      "affected_personas": ["Sarah Kim", "David Rodriguez"],
+      "affected_percentage": 70,
+      "current_solutions": [
+        "코딩 가이드라인 문서",
+        "수동 교육 및 멘토링",
+        "코드 리뷰 체크리스트"
+      ],
+      "satisfaction_score": 5,
+      "impact": {
+        "time_waste": "리뷰 과정에서 반복적 토론",
+        "cost": 80000,
+        "cost_unit": "USD per year per team",
+        "productivity_loss": 25,
+        "productivity_loss_unit": "percentage"
+      },
+      "priority_score": 85,
+      "root_causes": [
+        "주관적인 코드 품질 기준",
+        "시니어와 주니어 개발자 간 경험 차이",
+        "명확하지 않은 리뷰 가이드라인",
+        "팀 간 표준의 불일치"
+      ],
+      "quantified_impact": {
+        "code_quality_variation": "40% between reviewers",
+        "rework_rate": "15-20%",
+        "onboarding_time_junior": "2-3 months"
+      }
+    },
+    {
+      "id": "P003",
+      "description": "AI 코드 도구의 부정확한 제안으로 인한 추가 작업",
+      "severity": 7,
+      "frequency": "매일",
+      "affected_personas": ["David Rodriguez"],
+      "affected_percentage": 66,
+      "current_solutions": [
+        "수동 검증 및 수정",
+        "AI 도구 사용 제한",
+        "전통적 개발 방식 고수"
+      ],
+      "satisfaction_score": 3,
+      "impact": {
+        "time_waste": "AI 제안 검증 및 디버깅",
+        "cost": 45000,
+        "cost_unit": "USD per year per developer",
+        "productivity_loss": 20,
+        "productivity_loss_unit": "percentage"
+      },
+      "priority_score": 75,
+      "root_causes": [
+        "AI 모델의 맥락 이해 부족",
+        "프로젝트별 코딩 스타일 미반영",
+        "복잡한 비즈니스 로직 이해 한계",
+        "최신 코드베이스 변경사항 미반영"
+      ],
+      "quantified_impact": {
+        "developer_frustration": "66% report 'almost right but not quite'",
+        "debugging_time_increase": "30-50%",
+        "ai_tool_abandonment_rate": "35%"
+      }
+    },
+    {
+      "id": "P004",
+      "description": "시니어 개발자의 과도한 리뷰 부담",
+      "severity": 8,
+      "frequency": "매일",
+      "affected_personas": ["Sarah Kim"],
+      "affected_percentage": 90,
+      "current_solutions": [
+        "리뷰 로테이션 시스템",
+        "리뷰 할당량 제한",
+        "주니어 개발자 교육 강화"
+      ],
+      "satisfaction_score": 4,
+      "impact": {
+        "time_waste": "시니어 개발자 시간의 40-50%",
+        "cost": 120000,
+        "cost_unit": "USD per year per senior developer",
+        "productivity_loss": 30,
+        "productivity_loss_unit": "percentage"
+      },
+      "priority_score": 80,
+      "root_causes": [
+        "주니어 개발자의 코드 품질 부족",
+        "복잡한 아키텍처 결정의 시니어 의존성",
+        "지식 전수 프로세스의 비효율성",
+        "리뷰 품질에 대한 책임감"
+      ],
+      "quantified_impact": {
+        "senior_review_time": "40-50% of work time",
+        "burnout_risk": "High",
+        "knowledge_bottleneck": "Critical"
+      }
+    },
+    {
+      "id": "P005",
+      "description": "기술 부채 누적으로 인한 개발 속도 저하",
+      "severity": 9,
+      "frequency": "지속적",
+      "affected_personas": ["Alex Chen", "Sarah Kim", "David Rodriguez"],
+      "affected_percentage": 95,
+      "current_solutions": [
+        "정기적 리팩토링 세션",
+        "기술 부채 백로그 관리",
+        "코드 품질 메트릭 모니터링"
+      ],
+      "satisfaction_score": 3,
+      "impact": {
+        "time_waste": "새 기능 개발 시간 50% 증가",
+        "cost": 200000,
+        "cost_unit": "USD per year per team",
+        "productivity_loss": 45,
+        "productivity_loss_unit": "percentage"
+      },
+      "priority_score": 90,
+      "root_causes": [
+        "빠른 기능 출시 압박",
+        "일관성 없는 코드 리뷰 기준",
+        "리팩토링 시간 부족",
+        "기술 부채 가시성 부족"
+      ],
+      "quantified_impact": {
+        "development_slowdown": "50% increase in feature time",
+        "bug_fixing_cost": "10x more expensive later",
+        "maintenance_overhead": "60% of development time"
+      }
+    }
+  ],
+  "problem_impact_matrix": {
+    "high_impact_high_frequency": ["P001", "P005"],
+    "high_impact_low_frequency": ["P002"],
+    "low_impact_high_frequency": ["P003"],
+    "low_impact_low_frequency": ["P004"]
+  },
+  "total_cost_impact": {
+    "annual_cost_per_team": 595000,
+    "currency": "USD",
+    "productivity_loss_average": 31,
+    "affected_teams_globally": 75000,
+    "total_market_impact": 44625000000
+  },
+  "solution_opportunity": {
+    "addressable_problems": ["P001", "P002", "P003"],
+    "potential_time_savings": "60-70%",
+    "potential_cost_savings": 375000,
+    "roi_potential": "3-5x within first year"
+  }
+}

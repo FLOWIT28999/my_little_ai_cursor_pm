@@ -1,0 +1,150 @@
+---
+alwaysApply: false
+---
+# Functional Requirements Specification Rules
+
+## Purpose
+PRD의 사용자 스토리와 기능 요구사항을 기술적으로 상세한 기능 명세로 변환합니다.
+
+## Prerequisites
+- PRD user stories 분석 완료 (`prd-output/analysis/user-stories.md`)
+- 시스템 아키텍처 설계 완료
+- 기술 스택 확정
+
+## Functional Requirements Generation
+
+### 1. User Story to Technical Requirements Mapping
+```markdown
+## 기능 요구사항 매핑
+
+### 매핑 템플릿
+| User Story ID | 기능 요구사항 ID | 기술적 구현 | API Endpoint | Database Impact |
+|---------------|-----------------|-------------|--------------|-----------------|
+| US-001 | FR-001 | [구현 방법] | [API 경로] | [테이블/필드] |
+```
+
+### 2. Detailed Functional Requirements
+```markdown
+## 기능 요구사항 상세
+
+### FR-[ID]: [기능명]
+
+#### 요구사항 설명
+[상세한 기술적 설명]
+
+#### 입력 데이터
+- **필수 입력**: [필드명: 타입, 제약조건]
+- **선택 입력**: [필드명: 타입, 기본값]
+
+#### 처리 로직
+1. [처리 단계 1]
+2. [처리 단계 2]
+3. [처리 단계 3]
+
+#### 출력 데이터
+- **성공 응답**: [데이터 구조]
+- **오류 응답**: [오류 코드 및 메시지]
+
+#### 비즈니스 규칙
+- [규칙 1]
+- [규칙 2]
+
+#### 유효성 검사
+- [검증 규칙 1]
+- [검증 규칙 2]
+
+#### 예외 처리
+- [예외 상황 1]: [처리 방법]
+- [예외 상황 2]: [처리 방법]
+```
+
+### 3. Feature Breakdown Structure
+```markdown
+## 기능 분해 구조
+
+### 주요 기능 모듈
+1. **사용자 관리**
+   - FR-001: 사용자 등록
+   - FR-002: 사용자 인증
+   - FR-003: 프로필 관리
+
+2. **데이터 처리**
+   - FR-010: 데이터 생성
+   - FR-011: 데이터 조회
+   - FR-012: 데이터 수정
+   - FR-013: 데이터 삭제
+
+3. **보고 및 분석**
+   - FR-020: 리포트 생성
+   - FR-021: 데이터 시각화
+```
+
+## Technical Specification Format
+
+### API Specification
+```yaml
+# OpenAPI 3.0 명세 예시
+paths:
+  /api/v1/users:
+    post:
+      summary: Create new user
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: Invalid input
+        '409':
+          description: User already exists
+```
+
+### Data Model
+```sql
+-- SQL DDL 예시
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## Output Format
+
+```markdown
+## 기능 요구사항 명세서
+
+### 1. 기능 요구사항 목록
+[전체 기능 요구사항 테이블]
+
+### 2. 상세 기능 명세
+[각 기능별 상세 설명]
+
+### 3. API 명세
+[OpenAPI 형식의 API 정의]
+
+### 4. 데이터 모델
+[ERD 및 SQL DDL]
+
+### 5. 상태 전이 다이어그램
+[시스템 상태 변화 다이어그램]
+
+### 6. 시퀀스 다이어그램
+[주요 기능별 시퀀스 다이어그램]
+```
+
+## Validation Checklist
+
+- [ ] 모든 user story가 기능 요구사항으로 매핑되었는가?
+- [ ] 각 기능의 입력/출력이 명확히 정의되었는가?
+- [ ] 오류 처리 시나리오가 정의되었는가?
+- [ ] API 명세가 RESTful 원칙을 따르는가?
+- [ ] 데이터 무결성 제약이 정의되었는가?

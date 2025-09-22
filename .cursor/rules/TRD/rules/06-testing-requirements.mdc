@@ -1,0 +1,256 @@
+---
+alwaysApply: false
+---
+# Testing Requirements and Acceptance Criteria Rules
+
+## Purpose
+기능 요구사항과 NFR을 기반으로 포괄적인 테스트 전략과 인수 기준을 정의합니다.
+
+## Prerequisites
+- 기능 요구사항 명세 완료
+- 비기능 요구사항 명세 완료
+- API 명세 완료
+
+## Testing Strategy Framework
+
+### 1. Test Levels and Types
+```markdown
+## 테스트 레벨 정의
+
+### 단위 테스트 (Unit Testing)
+- **커버리지 목표**: 80% 이상
+- **테스트 대상**: 개별 함수, 메서드, 클래스
+- **도구**: Jest, pytest, JUnit
+- **실행 주기**: 커밋마다
+
+### 통합 테스트 (Integration Testing)
+- **테스트 대상**: API 엔드포인트, 데이터베이스 연동
+- **도구**: Postman, REST Assured, Supertest
+- **실행 주기**: PR 생성 시
+
+### 시스템 테스트 (System Testing)
+- **테스트 대상**: End-to-End 시나리오
+- **도구**: Cypress, Selenium, Playwright
+- **실행 주기**: 빌드마다
+
+### 성능 테스트 (Performance Testing)
+- **테스트 대상**: API 응답시간, 처리량
+- **도구**: JMeter, K6, Gatling
+- **실행 주기**: 릴리스 전
+```
+
+### 2. Acceptance Criteria Template
+```markdown
+## 인수 기준 템플릿
+
+### AC-[Feature]-[Number]: [기준 제목]
+
+#### Given (전제 조건)
+[시스템의 초기 상태 또는 전제 조건]
+
+#### When (실행 동작)
+[사용자 또는 시스템이 수행하는 동작]
+
+#### Then (예상 결과)
+[동작 후 예상되는 시스템 상태 또는 결과]
+
+#### Example
+```gherkin
+Feature: 사용자 로그인
+  
+  Scenario: 유효한 자격증명으로 로그인
+    Given 등록된 사용자가 존재하고
+    When 올바른 이메일과 비밀번호를 입력하면
+    Then JWT 토큰을 반환하고
+    And 상태 코드는 200이어야 한다
+    
+  Scenario: 잘못된 비밀번호로 로그인 시도
+    Given 등록된 사용자가 존재하고
+    When 올바른 이메일과 잘못된 비밀번호를 입력하면
+    Then 에러 메시지를 반환하고
+    And 상태 코드는 401이어야 한다
+```
+
+### 3. Test Case Specification
+```markdown
+## 테스트 케이스 명세
+
+### TC-[ID]: [테스트 케이스명]
+
+#### 테스트 목적
+[무엇을 검증하는지]
+
+#### 전제 조건
+- [조건 1]
+- [조건 2]
+
+#### 테스트 데이터
+```json
+{
+  "input": {
+    "field1": "value1",
+    "field2": "value2"
+  },
+  "expected": {
+    "status": 200,
+    "response": {}
+  }
+}
+```
+
+#### 테스트 단계
+1. [단계 1]
+2. [단계 2]
+3. [단계 3]
+
+#### 예상 결과
+- [결과 1]
+- [결과 2]
+
+#### 실제 결과
+[테스트 실행 후 기록]
+
+#### Pass/Fail
+[테스트 결과]
+```
+
+### 4. Test Data Management
+```markdown
+## 테스트 데이터 관리
+
+### 테스트 데이터 카테고리
+1. **정적 데이터**
+   - Fixture 파일로 관리
+   - 버전 관리 시스템에 포함
+
+2. **동적 데이터**
+   - 테스트 실행 시 생성
+   - Faker 라이브러리 활용
+
+3. **시드 데이터**
+   - 데이터베이스 초기 데이터
+   - 마이그레이션 스크립트로 관리
+
+### 데이터 초기화 전략
+- 각 테스트 전 데이터베이스 초기화
+- 트랜잭션 롤백 활용
+- 테스트용 별도 데이터베이스 사용
+```
+
+## Test Automation Framework
+
+### Unit Test Example
+```python
+# Python pytest 예시
+import pytest
+from unittest.mock import Mock, patch
+
+class TestUserService:
+    @pytest.fixture
+    def user_service(self):
+        return UserService()
+    
+    def test_create_user_success(self, user_service):
+        # Given
+        user_data = {
+            "email": "test@example.com",
+            "username": "testuser",
+            "password": "SecurePass123!"
+        }
+        
+        # When
+        with patch.object(user_service, 'repository') as mock_repo:
+            mock_repo.save.return_value = {"id": "123", **user_data}
+            result = user_service.create_user(user_data)
+        
+        # Then
+        assert result["id"] == "123"
+        assert result["email"] == user_data["email"]
+        mock_repo.save.assert_called_once()
+    
+    def test_create_user_duplicate_email(self, user_service):
+        # Test for duplicate email scenario
+        pass
+```
+
+### API Test Example
+```javascript
+// JavaScript with Jest and Supertest
+const request = require('supertest');
+const app = require('../app');
+
+describe('POST /api/v1/users', () => {
+    test('should create a new user', async () => {
+        const userData = {
+            email: 'test@example.com',
+            username: 'testuser',
+            password: 'SecurePass123!'
+        };
+        
+        const response = await request(app)
+            .post('/api/v1/users')
+            .send(userData)
+            .expect(201);
+        
+        expect(response.body).toHaveProperty('id');
+        expect(response.body.email).toBe(userData.email);
+    });
+    
+    test('should return 400 for invalid email', async () => {
+        const userData = {
+            email: 'invalid-email',
+            username: 'testuser',
+            password: 'SecurePass123!'
+        };
+        
+        const response = await request(app)
+            .post('/api/v1/users')
+            .send(userData)
+            .expect(400);
+        
+        expect(response.body.error).toBeDefined();
+    });
+});
+```
+
+## Output Format
+
+```markdown
+## 테스트 요구사항 및 인수 기준
+
+### 1. 테스트 전략
+- **테스트 레벨**: [단위, 통합, 시스템, 인수]
+- **테스트 유형**: [기능, 성능, 보안, 사용성]
+- **자동화 범위**: [자동화 대상 및 수동 테스트 영역]
+
+### 2. 인수 기준
+[기능별 Given-When-Then 형식의 인수 기준]
+
+### 3. 테스트 케이스
+[상세 테스트 케이스 목록]
+
+### 4. 테스트 데이터
+[테스트 데이터 준비 및 관리 계획]
+
+### 5. 테스트 환경
+- **개발 환경**: [로컬 테스트 환경]
+- **스테이징 환경**: [통합 테스트 환경]
+- **성능 테스트 환경**: [부하 테스트 환경]
+
+### 6. 테스트 자동화
+- **CI/CD 통합**: [파이프라인 구성]
+- **테스트 리포트**: [리포팅 도구 및 형식]
+
+### 7. 품질 게이트
+- **코드 커버리지**: 최소 80%
+- **정적 분석**: SonarQube 통과
+- **성능 기준**: 모든 NFR 충족
+```
+
+## Validation Checklist
+
+- [ ] 모든 기능 요구사항에 대한 인수 기준이 정의되었는가?
+- [ ] 테스트 케이스가 모든 시나리오를 포함하는가?
+- [ ] 부정적 테스트 시나리오가 포함되었는가?
+- [ ] 테스트 자동화 전략이 명확한가?
+- [ ] 테스트 데이터 관리 계획이 수립되었는가?

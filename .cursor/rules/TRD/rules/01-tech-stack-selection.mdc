@@ -1,0 +1,116 @@
+---
+alwaysApply: false
+---
+# Technology Stack Selection Rules
+
+## Purpose
+사용자로부터 기술 스택을 확정받고, PRD의 기술 요구사항을 기반으로 최적의 기술 선택을 검증합니다.
+
+## Prerequisites
+- PRD technical requirements 분석 완료 (`prd-output/analysis/technical-requirements.md`)
+- 프로젝트 목표 및 제약사항 이해
+
+## Input Requirements
+사용자로부터 다음 정보를 명확히 수집:
+
+### 1. Required Information Gathering
+```markdown
+## 기술 스택 확정 필요 사항
+
+### 프론트엔드
+- [ ] 프레임워크: [React/Vue/Angular/Next.js/기타]
+- [ ] 상태 관리: [Redux/MobX/Zustand/Context API/기타]
+- [ ] UI 라이브러리: [Material-UI/Ant Design/Tailwind CSS/기타]
+- [ ] 빌드 도구: [Webpack/Vite/Turbopack/기타]
+
+### 백엔드
+- [ ] 언어: [JavaScript/TypeScript/Python/Java/Go/기타]
+- [ ] 프레임워크: [Express/FastAPI/Spring Boot/Gin/기타]
+- [ ] API 스타일: [REST/GraphQL/gRPC]
+
+### 데이터베이스
+- [ ] 주 데이터베이스: [PostgreSQL/MySQL/MongoDB/기타]
+- [ ] 캐싱: [Redis/Memcached/없음]
+- [ ] 검색 엔진: [Elasticsearch/Algolia/없음]
+
+### 인프라
+- [ ] 클라우드: [AWS/GCP/Azure/온프레미스]
+- [ ] 컨테이너: [Docker/Kubernetes/없음]
+- [ ] CI/CD: [GitHub Actions/Jenkins/GitLab CI/기타]
+
+### 추가 고려사항
+- [ ] 팀 규모: [인원수]
+- [ ] 팀 기술 수준: [주니어/시니어 비율]
+- [ ] 예산 제약: [월 예산]
+- [ ] 타임라인: [개발 기간]
+```
+
+## Analysis Process
+
+### 1. Technology Stack Validation
+PRD 요구사항과 선택된 기술 스택의 적합성 검증:
+
+```markdown
+## 기술 스택 검증 매트릭스
+
+| 요구사항 | 선택된 기술 | 적합성 | 리스크 | 대안 |
+|----------|------------|--------|--------|------|
+| [성능 요구사항] | [선택 기술] | [높음/중간/낮음] | [식별된 리스크] | [대안 기술] |
+| [확장성 요구사항] | [선택 기술] | [높음/중간/낮음] | [식별된 리스크] | [대안 기술] |
+| [보안 요구사항] | [선택 기술] | [높음/중간/낮음] | [식별된 리스크] | [대안 기술] |
+```
+
+### 2. Technology Compatibility Check
+선택된 기술 간 호환성 검증:
+
+```markdown
+## 호환성 체크리스트
+- [ ] 프론트엔드-백엔드 통신 프로토콜 일치
+- [ ] 데이터베이스 드라이버 지원
+- [ ] 인증/인가 시스템 통합 가능
+- [ ] 모니터링 도구 호환성
+- [ ] 배포 파이프라인 지원
+```
+
+## Output Format
+
+```markdown
+## 확정된 기술 스택
+
+### 프론트엔드 스택
+- **프레임워크**: [확정 기술] - [선택 근거]
+- **상태 관리**: [확정 기술] - [선택 근거]
+- **스타일링**: [확정 기술] - [선택 근거]
+
+### 백엔드 스택
+- **언어/런타임**: [확정 기술] - [선택 근거]
+- **프레임워크**: [확정 기술] - [선택 근거]
+- **API 형식**: [확정 기술] - [선택 근거]
+
+### 데이터 계층
+- **주 데이터베이스**: [확정 기술] - [선택 근거]
+- **캐시**: [확정 기술] - [선택 근거]
+- **메시지 큐**: [확정 기술] - [선택 근거]
+
+### 인프라 및 DevOps
+- **클라우드 플랫폼**: [확정 기술] - [선택 근거]
+- **컨테이너화**: [확정 기술] - [선택 근거]
+- **CI/CD**: [확정 기술] - [선택 근거]
+
+### 기술적 제약사항
+1. [제약사항 1]
+2. [제약사항 2]
+
+### 팀 준비도 평가
+- **현재 역량**: [평가]
+- **교육 필요 영역**: [목록]
+- **예상 학습 곡선**: [기간]
+```
+
+## Validation Questions
+
+사용자에게 확인할 질문:
+1. 선택한 기술 스택에 대한 팀의 경험이 있습니까?
+2. 라이선스 비용이나 제약사항을 확인하셨습니까?
+3. 기존 시스템과의 통합 요구사항이 있습니까?
+4. 특정 규정 준수 요구사항(HIPAA, PCI-DSS 등)이 있습니까?

@@ -1,0 +1,287 @@
+---
+alwaysApply: false
+---
+# API and Data Specification Rules
+
+## Purpose
+시스템의 API 인터페이스와 데이터 모델을 상세하게 정의하고 문서화합니다.
+
+## Prerequisites
+- 기능 요구사항 명세 완료
+- 시스템 아키텍처 설계 완료
+- 데이터베이스 선택 완료
+
+## API Specification Process
+
+### 1. API Design Principles
+```markdown
+## API 설계 원칙
+
+### RESTful 원칙
+- [ ] Resource 기반 URL 설계
+- [ ] HTTP 메서드 올바른 사용 (GET, POST, PUT, DELETE, PATCH)
+- [ ] 상태 코드 표준 준수
+- [ ] HATEOAS 구현 (선택)
+
+### 버전 관리
+- **버전 방식**: URL Path (예: /api/v1/)
+- **하위 호환성**: 최소 2개 버전 지원
+- **Deprecation 정책**: 6개월 전 공지
+
+### 명명 규칙
+- **URL**: kebab-case (예: /user-profiles)
+- **JSON 필드**: camelCase (예: userId)
+- **쿼리 파라미터**: snake_case (예: sort_by)
+```
+
+### 2. OpenAPI Specification Template
+```yaml
+openapi: 3.0.3
+info:
+  title: [서비스명] API
+  version: 1.0.0
+  description: |
+    [API 설명]
+  contact:
+    email: api@example.com
+  license:
+    name: MIT
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+  - url: https://staging-api.example.com/v1
+    description: Staging server
+
+security:
+  - bearerAuth: []
+
+paths:
+  /resources:
+    get:
+      summary: List resources
+      operationId: listResources
+      tags:
+        - Resources
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  
+  schemas:
+    Resource:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          maxLength: 255
+        createdAt:
+          type: string
+          format: date-time
+```
+
+### 3. Data Model Design
+```markdown
+## 데이터 모델 설계
+
+### Entity Relationship Diagram
+```mermaid
+erDiagram
+    USER ||--o{ ORDER : places
+    ORDER ||--|{ ORDER_ITEM : contains
+    PRODUCT ||--o{ ORDER_ITEM : includes
+    USER ||--o{ ADDRESS : has
+    
+    USER {
+        uuid id PK
+        string email UK
+        string username UK
+        string password_hash
+        datetime created_at
+        datetime updated_at
+    }
+    
+    ORDER {
+        uuid id PK
+        uuid user_id FK
+        string status
+        decimal total_amount
+        datetime created_at
+    }
+    
+    PRODUCT {
+        uuid id PK
+        string name
+        text description
+        decimal price
+        integer stock_quantity
+    }
+    
+    ORDER_ITEM {
+        uuid order_id FK
+        uuid product_id FK
+        integer quantity
+        decimal unit_price
+    }
+```
+
+### SQL DDL Generation
+```sql
+-- Database: PostgreSQL
+-- Generated from ERD
+
+-- Enable UUID extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Users table
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    email_verified BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create indexes
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_users_created_at ON users(created_at);
+
+-- Orders table
+CREATE TABLE orders (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE RESTRICT,
+    status VARCHAR(50) NOT NULL DEFAULT 'pending',
+    total_amount DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chk_total_amount CHECK (total_amount >= 0)
+);
+
+-- Products table
+CREATE TABLE products (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    stock_quantity INTEGER NOT NULL DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chk_price CHECK (price >= 0),
+    CONSTRAINT chk_stock CHECK (stock_quantity >= 0)
+);
+
+-- Order items table (junction table)
+CREATE TABLE order_items (
+    order_id UUID NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+    product_id UUID NOT NULL REFERENCES products(id) ON DELETE RESTRICT,
+    quantity INTEGER NOT NULL,
+    unit_price DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY (order_id, product_id),
+    CONSTRAINT chk_quantity CHECK (quantity > 0),
+    CONSTRAINT chk_unit_price CHECK (unit_price >= 0)
+);
+
+-- Add update trigger for updated_at columns
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_orders_updated_at BEFORE UPDATE ON orders
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+```
+
+## Output Format
+
+```markdown
+## API 및 데이터 명세서
+
+### 1. API 개요
+- **Base URL**: [프로덕션 URL]
+- **버전**: v1
+- **인증 방식**: Bearer Token (JWT)
+- **콘텐츠 타입**: application/json
+
+### 2. API 엔드포인트
+[OpenAPI 명세 - YAML 형식]
+
+### 3. 데이터 모델
+#### 3.1 ERD
+[Mermaid 다이어그램]
+
+#### 3.2 데이터베이스 스키마
+[SQL DDL]
+
+#### 3.3 데이터 딕셔너리
+[테이블별 컬럼 설명]
+
+### 4. API 보안
+- 인증/인가 플로우
+- Rate limiting 정책
+- CORS 설정
+
+### 5. 에러 처리
+#### 에러 응답 형식
+```json
+{
+  "error": {
+    "code": "RESOURCE_NOT_FOUND",
+    "message": "The requested resource was not found",
+    "details": {},
+    "timestamp": "2024-01-01T00:00:00Z"
+  }
+}
+```
+
+### 6. 페이지네이션
+[페이지네이션 전략 및 구현]
+
+### 7. API 사용 예제
+[cURL 또는 HTTP 클라이언트 예제]
+```
+
+## Validation Checklist
+
+- [ ] 모든 엔드포인트가 RESTful 원칙을 따르는가?
+- [ ] 적절한 HTTP 상태 코드를 사용하는가?
+- [ ] 요청/응답 스키마가 명확히 정의되었는가?
+- [ ] 데이터베이스 인덱스가 적절히 설정되었는가?
+- [ ] 외래 키 제약과 CASCADE 옵션이 올바른가?

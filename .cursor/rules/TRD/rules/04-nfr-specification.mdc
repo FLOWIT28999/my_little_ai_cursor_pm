@@ -1,0 +1,169 @@
+---
+alwaysApply: false
+---
+# Non-Functional Requirements Specification Rules
+
+## Purpose
+시스템의 품질 속성을 정의하고 측정 가능한 비기능 요구사항을 명세화합니다.
+
+## Prerequisites
+- PRD 분석 완료
+- 시스템 아키텍처 설계 완료
+- 기술 스택 확정
+
+## NFR Categories and Templates
+
+### 1. Performance Requirements
+```markdown
+## 성능 요구사항
+
+### NFR-PERF-001: 응답 시간
+- **측정 지표**: API 응답 시간
+- **목표값**: 
+  - P50: < 200ms
+  - P95: < 500ms
+  - P99: < 1000ms
+- **측정 방법**: APM 도구 (New Relic/Datadog)
+- **측정 주기**: 실시간 모니터링
+
+### NFR-PERF-002: 처리량
+- **측정 지표**: 초당 처리 요청 수 (RPS)
+- **목표값**: 최소 1000 RPS
+- **피크 시간**: 5000 RPS
+- **측정 조건**: 4 vCPU, 16GB RAM 서버 기준
+```
+
+### 2. Scalability Requirements
+```markdown
+## 확장성 요구사항
+
+### NFR-SCALE-001: 수평 확장
+- **자동 스케일링**: 
+  - CPU 사용률 > 70% 시 스케일 아웃
+  - CPU 사용률 < 30% 시 스케일 인
+- **최소/최대 인스턴스**: 2 ~ 20
+- **스케일링 시간**: 5분 이내
+
+### NFR-SCALE-002: 데이터 확장성
+- **데이터 증가율**: 월 10% 예상
+- **최대 데이터 크기**: 100TB
+- **파티셔닝 전략**: 날짜별 파티셔닝
+```
+
+### 3. Security Requirements
+```markdown
+## 보안 요구사항
+
+### NFR-SEC-001: 데이터 암호화
+- **전송 중 암호화**: TLS 1.3
+- **저장 데이터 암호화**: AES-256
+- **키 관리**: AWS KMS / HashiCorp Vault
+
+### NFR-SEC-002: 인증 및 인가
+- **인증 방식**: OAuth 2.0 / JWT
+- **토큰 만료**: Access Token 1시간, Refresh Token 30일
+- **MFA 지원**: TOTP 기반
+
+### NFR-SEC-003: 보안 표준 준수
+- **OWASP Top 10**: 모든 항목 대응
+- **PCI-DSS**: Level 2 준수 (결제 처리 시)
+- **GDPR**: 개인정보 처리 준수
+```
+
+### 4. Reliability Requirements
+```markdown
+## 신뢰성 요구사항
+
+### NFR-REL-001: 가용성
+- **목표 가용성**: 99.9% (연간 다운타임 8.76시간)
+- **측정 기간**: 월 단위
+- **제외 사항**: 계획된 유지보수 시간
+
+### NFR-REL-002: 장애 복구
+- **RTO (Recovery Time Objective)**: 1시간
+- **RPO (Recovery Point Objective)**: 15분
+- **백업 주기**: 일일 전체 백업, 시간당 증분 백업
+```
+
+### 5. Usability Requirements
+```markdown
+## 사용성 요구사항
+
+### NFR-USE-001: 페이지 로드 시간
+- **초기 로드**: < 3초
+- **후속 페이지**: < 1초
+- **측정 조건**: 3G 네트워크 환경
+
+### NFR-USE-002: 접근성
+- **WCAG 준수 수준**: AA
+- **스크린 리더 지원**: 필수
+- **키보드 네비게이션**: 모든 기능 접근 가능
+```
+
+## NFR Verification Matrix
+
+```markdown
+## NFR 검증 매트릭스
+
+| NFR ID | 요구사항 | 측정 방법 | 도구 | 담당 | 주기 |
+|--------|---------|----------|------|------|------|
+| NFR-PERF-001 | 응답시간 < 200ms | APM 모니터링 | Datadog | DevOps | 실시간 |
+| NFR-SEC-001 | TLS 1.3 | SSL 검사 | SSL Labs | Security | 분기별 |
+| NFR-REL-001 | 99.9% 가용성 | 가동시간 모니터링 | Uptime Robot | SRE | 실시간 |
+```
+
+## Output Format
+
+```markdown
+## 비기능 요구사항 명세서
+
+### 1. 요약
+- 총 NFR 수: [개수]
+- 우선순위: [Critical/High/Medium/Low 분류]
+- 주요 제약사항: [목록]
+
+### 2. 성능 요구사항
+[상세 명세]
+
+### 3. 확장성 요구사항
+[상세 명세]
+
+### 4. 보안 요구사항
+[상세 명세]
+
+### 5. 신뢰성 요구사항
+[상세 명세]
+
+### 6. 사용성 요구사항
+[상세 명세]
+
+### 7. 호환성 요구사항
+[상세 명세]
+
+### 8. 유지보수성 요구사항
+[상세 명세]
+
+### 9. 검증 계획
+[NFR별 테스트 및 모니터링 계획]
+
+### 10. 컴플라이언스 매트릭스
+[규정 준수 요구사항 및 대응 방안]
+```
+
+## NFR Priority Classification
+
+```markdown
+### 우선순위 기준
+- **Critical**: 시스템 운영에 필수적, 미충족 시 서비스 불가
+- **High**: 사용자 경험에 중대한 영향, 비즈니스 목표 달성에 필수
+- **Medium**: 품질 향상에 기여, 단기적 우회 가능
+- **Low**: 장기적 개선 사항, nice-to-have
+```
+
+## Validation Checklist
+
+- [ ] 모든 NFR이 측정 가능한가?
+- [ ] 목표값이 현실적이고 달성 가능한가?
+- [ ] 측정 방법과 도구가 명확한가?
+- [ ] 규정 준수 요구사항이 모두 포함되었는가?
+- [ ] NFR 간 상충되는 요구사항이 있는가?
