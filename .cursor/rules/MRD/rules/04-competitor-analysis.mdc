@@ -11,7 +11,7 @@
 ## Process Steps
 
 ### 1. Competitor Identification
-Use Perplexity MCP:
+Use Perplexity MCP (설정되지 않은 경우 Tavily MCP 사용):
 - Query: "top competitors in [market] 2024 market share"
 - Query: "[competitor_name] product features pricing model"
 - Query: "[competitor_name] customer reviews pros cons"

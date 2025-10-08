@@ -17,7 +17,7 @@ alwaysApply: true
 ## Process Steps
 
 ### 1. Market Landscape Analysis
-Use Perplexity MCP to research:
+Use Perplexity MCP to research (설정되지 않은 경우 Tavily MCP 사용):
 - Query: "[target_market] market size 2024 2025 forecast"
 - Query: "[target_market] industry trends growth drivers"
 - Query: "[target_market] market segmentation analysis"

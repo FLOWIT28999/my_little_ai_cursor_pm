@@ -5,7 +5,7 @@
 
 ## Prerequisites
 - MRD 문서가 `MRD-Document.md` 또는 `mrd-output/final/MRD-Document.md`로 제공
-- Perplexity MCP가 경쟁사 조사를 위해 구성됨
+- Perplexity MCP가 경쟁사 조사를 위해 구성됨 (설정되지 않은 경우 Tavily MCP 사용)
 - Playwright MCP가 사용자 조사 시뮬레이션을 위해 구성됨 (선택사항)
 - 모든 규칙 파일이 `.cursor/rules/` 디렉토리에 존재
 - **출력 언어**: 한국어

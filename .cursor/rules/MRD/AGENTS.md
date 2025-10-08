@@ -40,7 +40,7 @@ Step 1부터 Step 7까지 순차적으로 진행하며, 각 단계에서 수집�
 ```
 
 ## Prerequisites
-- Perplexity MCP 활성화
+- Perplexity MCP 활성화 (설정되지 않은 경우 Tavily MCP 사용)
 - Playwright MCP 활성화
 - `.cursor/rules/MRD/rules/` 폴더에 모든 규칙 파일 존재
 - `mrd-output/` 폴더 구조 생성
@@ -106,6 +106,8 @@ Research and collect data for:
 3. Market segments
 4. Key trends
 5. TAM/SAM/SOM calculations
+
+Note: Perplexity MCP가 설정되지 않은 경우 Tavily MCP를 사용하세요.
 ```
 
 ### 1.3 Data Storage
@@ -196,6 +198,8 @@ Create detailed personas and collect structured data for:
 2. Goals and challenges
 3. Buying process
 4. Budget ranges
+
+Note: Perplexity MCP가 설정되지 않은 경우 Tavily MCP를 사용하세요.
 ```
 
 ### 2.3 Data Storage

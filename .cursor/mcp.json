@@ -24,7 +24,13 @@
 			"args": [
 				"perplexity-mcp"
 			]
-		}
+	},
+	
+		  "tavily-remote-mcp": {
+			"command": "npx -y mcp-remote https://mcp.tavily.com/mcp/?tavilyApiKey=<your-api-key>",
+			"env": {}
+	}
+
 			
 		}
 }

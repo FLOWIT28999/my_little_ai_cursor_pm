@@ -20,7 +20,7 @@ alwaysApply: true
 ## Process Steps
 
 ### 1. Solution Research
-Use Perplexity MCP for:
+Use Perplexity MCP for (설정되지 않은 경우 Tavily MCP 사용):
 - Query: "innovative solutions for [problem] in [industry]"
 - Query: "emerging technologies solving [problem_type]"
 - Query: "best practices [industry] [problem_solution]"

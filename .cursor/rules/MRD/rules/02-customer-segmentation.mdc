@@ -17,7 +17,7 @@ alwaysApply: true
 ## Process Steps
 
 ### 1. Market Segmentation Research
-Use Perplexity MCP for:
+Use Perplexity MCP for (설정되지 않은 경우 Tavily MCP 사용):
 - Query: "[target_market] customer segments demographics psychographics"
 - Query: "[target_market] buyer personas characteristics B2B/B2C"
 - Query: "[industry] customer pain points challenges survey results"
